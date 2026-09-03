@@ -1,4 +1,3 @@
-import turtle
 import os
 import sys
 import json
@@ -104,16 +103,14 @@ def juego():
     player1 = {'Nombre' : "Jugador1", 'Vida' : 100, 'Ataque' : 10}
     player2 = {'Nombre' : "Jugador2", 'Vida' : 100, 'Ataque' : 10}
 
-    apuesta = int(input("cual crees que gane 1 o 2: "))
+    apuesta = pedir_opcion_segura("¿Cuál crees que gane? (1 o 2): ", [1, 2])
     while player1['Vida'] > 0 and player2['Vida'] > 0:
         player1["Ataque"] = random.randint(8,12)
         player2["Ataque"] = random.randint(8,12)
         player2['Vida'] -= player1['Ataque']
         print(player1['Nombre'], ' ataca a ', player2['Nombre'])
-        time.sleep(1)
         player1['Vida'] -= player2['Ataque']
         print(player2['Nombre'], ' ataca ', player1['Nombre'])
-        time.sleep(1)
         print('Jugador1 :', player1['Vida'], 'Jugador2 :', player2['Vida'])
 
     if apuesta == 1 and player1["Vida"] > 0:
@@ -201,7 +198,7 @@ def main():
             limpiar_pantalla()
 
         elif cmd == "version":
-            print(f"DexOS {VERSION}")dexter
+            print(f"DexOS {VERSION}")
 
         elif cmd == "salir":
             print("Apagando DexOS... ¡Hasta pronto!")
